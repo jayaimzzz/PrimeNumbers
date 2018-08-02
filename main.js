@@ -13,6 +13,18 @@ function isThisPrime(a) {
     return result
 }
 
+//This function is not working yet.
+function findTheNextPrime(a) {
+    let i = 1
+    let foundIt = false
+    while (foundIt = false){
+        let counter = 2
+
+    }
+    foundIt = true
+    let result = a + i
+}
+
 function listThisManyPrimeNumbers(a) {
     let counter = 1
     let primeCounter = 1
