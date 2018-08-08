@@ -1,5 +1,5 @@
 let distination = document.getElementById('div1')
-
+// I should write more comments
 function displayToPage(a) {
     let text = document.createTextNode(a)
     let spanText = document.createElement('span')
