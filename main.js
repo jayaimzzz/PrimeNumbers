@@ -38,11 +38,11 @@ function convertNumberToWord(a) {
     if (twoLSDs < 10) {
         twoLSDsWord = zeroToNineteenWORDS[singlesPlace]
     }
-
+    
     if (10 <= twoLSDs < 20) {
         twoLSDsWord = zeroToNineteenWORDS[twoLSDs]
     }
-
+    
     if (twoLSDs < 100 && twoLSDs >= 20) {
         if (twoLSDs % 10 == 0) {
             twoLSDsWord = tenPlaceWORDS[tensPlace]
@@ -50,22 +50,29 @@ function convertNumberToWord(a) {
             twoLSDsWord = tenPlaceWORDS[tensPlace] + " " + zeroToNineteenWORDS[singlesPlace]
         }
     }
-
-
+    
+    
     if (hundredsPlace !== 0) {
         hundredsPlaceWord = zeroToNineteenWORDS[hundredsPlace] + ' hundred '
     }
-
+    
     if (thousandsPlace !== 0) {
         thousandsPlaceWord = zeroToNineteenWORDS[thousandsPlace] + ' thousand '
     }
-
+    
     word = thousandsPlaceWord + hundredsPlaceWord + twoLSDsWord
+
+        if (singlesPlace == 0 && tensPlace == 0 && hundredsPlace == 0 && thousandsPlace == 0) {
+            word = "zero"
+        }
+
     return word
 }
+console.log(convertNumberToWord(0))
 
 function convertWordToNumber(a) {
-    i = 1
+    a = a.toLowerCase()
+    i = 0
     result = ""
     matchedYet = false
     while (matchedYet == false && i < 10000) {
@@ -76,9 +83,10 @@ function convertWordToNumber(a) {
             i++
         }
     }
+    if (i = 10000 && matchedYet == false) { result = "error"}
     return result
 }
-console.log(convertWordToNumber("one hundred"))
+console.log(convertWordToNumber("twenty"))
 
 
 function isThisPrime(a) {
@@ -115,6 +123,7 @@ function findTheNextPrime(a) {
 }
 
 let primeNumbersDiv = document.getElementById("primeNumbersDiv")
+
 function listThisManyPrimeNumbers(a) {
     let counter = 1
     let primeCounter = 1
@@ -132,6 +141,7 @@ function listThisManyPrimeNumbers(a) {
 function writeToScreen(number) {
     document.write(number + ", ")
 }
+
 function listThisManyPrimeNumbers(a) {
     let i = 1
     aPrimeNumber = 1
@@ -146,10 +156,22 @@ function listThisManyPrimeNumbers(a) {
 
 
 let quantityOfPrimeNumbers = prompt("How many prime numbers would you like to calculate?")
-// let quantityOfPrimeNumbers = "two"
-if (typeof quantityOfPrimeNumbers  == 'string') {
-    quantityOfPrimeNumbers =  convertWordToNumber(quantityOfPrimeNumbers)
-}
-listThisManyPrimeNumbers(quantityOfPrimeNumbers)
 
+if (isNaN(quantityOfPrimeNumbers) == true) {
+    quantityOfPrimeNumbers = convertWordToNumber(quantityOfPrimeNumbers)
+}
+
+if (isNaN(quantityOfPrimeNumbers) == false) {
+    listThisManyPrimeNumbers(quantityOfPrimeNumbers)
+}
+
+if (quantityOfPrimeNumbers < 0){
+    writeToScreen("Listing a negative number of anything, let alone prime numbers, makes no sense Anthony")
+}
+if (quantityOfPrimeNumbers == 'error'){
+    writeToScreen("check your spelling and/or use a smaller number, Anthony")
+}
+if (quantityOfPrimeNumbers == 0){
+    writeToScreen("Nothing to display")
+}
 
