@@ -1,3 +1,12 @@
+let listThisMany = prompt ("How many prime numbers would you like to calculate?")
+
+let destination = document.getElementById('primeNumbersDiv')
+function displayToPage (a){
+    let text = document.createTextNode(a + ", ");
+    let span = document.createElement('span');
+    span.appendChild(text);
+    primeNumbersDiv.appendChild(span)
+}
 function isThisPrime(a) {
     let counter = 2
     let result = true
@@ -13,45 +22,6 @@ function isThisPrime(a) {
     return result
 }
 
-
-
-// //This function is not working yet.
-// function findTheNextPrime(a) {
-//     let i = 1
-//     let foundIt = false
-//     while (foundIt = false){
-//         let counter = 2
-
-//     }
-//     foundIt = true
-//     let result = a + i
-// }
-
-// let primeNumbersDiv = document.getElementById("primeNumbersDiv")
-// function listThisManyPrimeNumbers(a) {
-//     let counter = 1
-//     let primeCounter = 1
-//     while (counter <= a) {
-//         if (isThisPrime(primeCounter)) {
-//             writeToScreen(primeCounter)
-//             counter++
-//             primeCounter++
-//         } else {
-//             primeCounter++
-//         }
-//     }
-// }
-
-function writeToScreen(number) {
-    const numberToDisplay = document.createTextNode(number + ", ")
-    let primeNumbersDiv = document.getElementById("primeNumbersDiv")
-    primeNumbersDiv.appendChild(numberToDisplay)
-    // primeNumbersDiv.textContent += number + ", "
-
-    // primeNumbersDiv.appendChild(number + ", ")
-    // document.write(number + ", ")
-}
-
 function findTheNextPrime(a) {
     let i = 1
     let theNextPrime = 1
@@ -64,25 +34,11 @@ function findTheNextPrime(a) {
             i++
         }
     }
-
     return theNextPrime
 }
 
-function listThisManyPrimeNumbers(a) {
-    let i = 1
-    aPrimeNumber = 1
-    theNextPrimeNumber = 1
-    while (i <= a) {
-        aPrimeNumber = theNextPrimeNumber
-        // document.write(aPrimeNumber + ", ")
-        writeToScreen(aPrimeNumber)
-        theNextPrimeNumber = findTheNextPrime(aPrimeNumber)
-        i++
-    }
+let primeNumber = 1
+for (let i = 1; i < listThisMany; i++){
+    displayToPage(primeNumber);
+    primeNumber = findTheNextPrime(primeNumber)
 }
-
-
-
-let quantityOfPrimeNumbers = 3
-// let quantityOfPrimeNumbers = prompt("How many prime numbers would you like to calculate?")
-listThisManyPrimeNumbers(quantityOfPrimeNumbers)
