@@ -1,5 +1,4 @@
 let distination = document.getElementById('div1')
-// I should write more commentsfjldasfd
 function displayToPage(a) {
     let text = document.createTextNode(a)
     let spanText = document.createElement('span')
@@ -38,11 +37,11 @@ function convertNumberToWord(a) {
     if (twoLSDs < 10) {
         twoLSDsWord = zeroToNineteenWORDS[singlesPlace]
     }
-    
+
     if (10 <= twoLSDs < 20) {
         twoLSDsWord = zeroToNineteenWORDS[twoLSDs]
     }
-    
+
     if (twoLSDs < 100 && twoLSDs >= 20) {
         if (twoLSDs % 10 == 0) {
             twoLSDsWord = tenPlaceWORDS[tensPlace]
@@ -50,25 +49,24 @@ function convertNumberToWord(a) {
             twoLSDsWord = tenPlaceWORDS[tensPlace] + " " + zeroToNineteenWORDS[singlesPlace]
         }
     }
-    
-    
+
+
     if (hundredsPlace !== 0) {
         hundredsPlaceWord = zeroToNineteenWORDS[hundredsPlace] + ' hundred '
     }
-    
+
     if (thousandsPlace !== 0) {
         thousandsPlaceWord = zeroToNineteenWORDS[thousandsPlace] + ' thousand '
     }
-    
+
     word = thousandsPlaceWord + hundredsPlaceWord + twoLSDsWord
 
-        if (singlesPlace == 0 && tensPlace == 0 && hundredsPlace == 0 && thousandsPlace == 0) {
-            word = "zero"
-        }
+    if (singlesPlace == 0 && tensPlace == 0 && hundredsPlace == 0 && thousandsPlace == 0) {
+        word = "zero"
+    }
 
     return word
 }
-console.log(convertNumberToWord(0))
 
 function convertWordToNumber(a) {
     a = a.toLowerCase()
@@ -83,10 +81,11 @@ function convertWordToNumber(a) {
             i++
         }
     }
-    if (i = 10000 && matchedYet == false) { result = "error"}
+    if (i = 10000 && matchedYet == false) {
+        result = "error"
+    }
     return result
 }
-console.log(convertWordToNumber("twenty"))
 
 
 function isThisPrime(a) {
@@ -154,6 +153,18 @@ function listThisManyPrimeNumbers(a) {
     }
 }
 
+let lastPrimeNumber = 0;
+let count = 0;
+function displayTheNextPrimeNumber() {
+    let nextPrimeNumber = findTheNextPrime(lastPrimeNumber);
+    displayToPage(nextPrimeNumber + ', ');
+    lastPrimeNumber = nextPrimeNumber;
+    count++
+    if(count == quantityOfPrimeNumbers){
+        clearInterval(interval);
+    }
+}
+
 
 let quantityOfPrimeNumbers = prompt("How many prime numbers would you like to calculate?")
 
@@ -162,16 +173,16 @@ if (isNaN(quantityOfPrimeNumbers) == true) {
 }
 
 if (isNaN(quantityOfPrimeNumbers) == false) {
-    listThisManyPrimeNumbers(quantityOfPrimeNumbers)
+    // listThisManyPrimeNumbers(quantityOfPrimeNumbers)
+    var interval = setInterval(displayTheNextPrimeNumber, .1);
 }
 
-if (quantityOfPrimeNumbers < 0){
+if (quantityOfPrimeNumbers < 0) {
     writeToScreen("Listing a negative number of anything, let alone prime numbers, makes no sense Anthony")
 }
-if (quantityOfPrimeNumbers == 'error'){
+if (quantityOfPrimeNumbers == 'error') {
     writeToScreen("check your spelling and/or use a smaller number, Anthony")
 }
-if (quantityOfPrimeNumbers == 0){
+if (quantityOfPrimeNumbers == 0) {
     writeToScreen("Nothing to display")
 }
-
